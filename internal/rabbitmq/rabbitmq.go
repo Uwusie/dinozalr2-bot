@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"os"
 	"sync"
 
 	"github.com/Uwusie/dinozalr2-bot/internal/config"
@@ -20,11 +21,11 @@ var (
 
 func getRabbitConnection() *amqp.Connection {
 	onceConn.Do(func() {
-		username := "guest"
-		password := "guest"
-		host := "localhost"
-		port := "5672"
-		vhost := "/"
+		username := os.Getenv("RABBITMQ_USERNAME")
+		password := os.Getenv("RABBITMQ_PASSWORD")
+		host := os.Getenv("RABBITMQ_HOST")
+		port := os.Getenv("RABBITMQ_PORT")
+		vhost := os.Getenv("RABBITMQ_VHOST")
 
 		amqpURI := "amqp://" + username + ":" + password + "@" + host + ":" + port + vhost
 

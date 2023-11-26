@@ -1,5 +1,7 @@
 package config
 
+import "os"
+
 type Config struct {
 	Token     string
 	ChannelID string
@@ -7,6 +9,6 @@ type Config struct {
 
 func Load() Config {
 	return Config{
-		Token: "PASTE BOT TOKEN HERE",
+		Token: os.Getenv("DISCORD_BOT_TOCKEN"),
 	}
 }
